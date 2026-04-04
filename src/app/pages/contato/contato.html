@@ -1,0 +1,9 @@
+<form
+  action=""
+  class="flex flex-col gap-2 bg-gray-200 p-4 rounded-lg justify-center max-w-[500px] mx-auto mt-10 [&_input]:bg-white [&_input]:p-2 [&_input]:rounded-lg [&_input]:outline-none [&_button]:bg-blue-500 [&_button]:p-2 [&_button]:rounded-lg [&_button]:outline-none [&_button]:hover:bg-blue-600"
+>
+  <input type="text" placeholder="name" [field]="contatoForm.name" />
+  <input type="email" placeholder="email" [field]="contatoForm.email" />
+  <input type="text" placeholder="message" [field]="contatoForm.message" />
+  <button type="button" (click)="sendForm()">Send</button>
+</form>

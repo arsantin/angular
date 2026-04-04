@@ -1,0 +1,9 @@
+<h1>Sign up</h1>
+<form
+  action=""
+  class="flex flex-col gap-2 bg-gray-200 p-4 rounded-lg justify-center max-w-[500px] mx-auto mt-10 [&_input]:bg-white [&_input]:p-2 [&_input]:rounded-lg [&_input]:outline-none [&_button]:bg-blue-500 [&_button]:p-2 [&_button]:rounded-lg [&_button]:outline-none [&_button]:hover:bg-blue-600"
+>
+  <input type="email" placeholder="email" [field]="signupForm.email" />
+  <input type="password" placeholder="password" [field]="signupForm.password" />
+  <button type="button" (click)="postSignup()">Send</button>
+</form>

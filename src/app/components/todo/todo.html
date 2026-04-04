@@ -1,0 +1,13 @@
+<h1>TODO</h1>
+<div class="flex">
+<input type="text" (input)="myInput.set($any($event.target).value)" placeholder="Type something..." class="p-2 border-1 border-black rounded-sm"/>
+<button (click)="addTodo()">add</button>
+<button (click)="removeTask(meuArray().length - 1)">remove</button>
+</div>
+
+<ul>
+    @for(item of meuArray(); track item){
+        <li>{{ item }}</li>
+    }
+</ul>
+<p>meu input: {{ myInput() }}</p>
