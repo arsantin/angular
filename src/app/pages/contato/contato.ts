@@ -14,6 +14,8 @@ interface iContato {
   templateUrl: './contato.html',
   styleUrl: './contato.css',
 })
+
+
 export class Contato {
   http = inject(HttpClient);
 

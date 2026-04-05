@@ -3,6 +3,7 @@ import { Component, signal, inject } from '@angular/core';
 import { Field, form } from '@angular/forms/signals';
 
 interface ISignup {
+  name: string;
   email: string;
   password: string;
 }
@@ -15,6 +16,7 @@ interface ISignup {
 })
 export class Signup {
   signupModel = signal<ISignup>({
+    name: '',
     email: '',
     password: '',
   });
@@ -23,8 +25,8 @@ export class Signup {
   signupForm = form(this.signupModel);
 
   postSignup() {
-    const { email, password } = this.signupModel();
-    const signupData: ISignup = { email, password };
+    const { name, email, password } = this.signupModel();
+    const signupData: ISignup = { name, email, password };
     console.log('signupData', signupData);
     this.http.post('http://127.0.0.1:3000/signup', signupData).subscribe(
       (response: any) => {
