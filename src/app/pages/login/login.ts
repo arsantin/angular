@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
-import { Field, form } from '@angular/forms/signals';
+import { HttpClient } from '@angular/common/http';
+import { Component, inject, signal } from '@angular/core';
+import { form, FormField } from '@angular/forms/signals';
 
 interface ILogin {
   email: string;
@@ -8,23 +9,32 @@ interface ILogin {
 
 @Component({
   selector: 'app-login',
-  imports: [Field],
+  imports: [FormField],
   templateUrl: './login.html',
-  styleUrl: './login.css'
+  styleUrl: './login.css',
 })
-
 export class Login {
-
   loginModel = signal<ILogin>({
     email: '',
-    password: ''
-  })
-
+    password: '',
+  });
+  http = inject(HttpClient);
   loginForm = form(this.loginModel);
 
   postLogin() {
-    const loginData = this.loginForm();
-    console.log(loginData)
+    const { email, password } = this.loginModel();
+    const loginData: ILogin = { email, password };
+    console.log('loginData', loginData);
+    this.http.post('http://localhost:3000/auth/validate', loginData).subscribe({
+      next: (response: any) => {
+        console.log('response', response);
+        const token = response.token;
+        localStorage.setItem('token_angular', token);
+        alert('Formulário enviado com sucesso!');
+      },
+      error: (error) => {
+        console.error('Erro ao enviar o formulário', error);
+      },
+    });
   }
-
 }

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, signal } from '@angular/core';
-import { Field, form } from '@angular/forms/signals';
+import { Field, form, FormField } from '@angular/forms/signals';
 
 interface iContato {
   name: string;
@@ -10,12 +10,10 @@ interface iContato {
 
 @Component({
   selector: 'app-contato',
-  imports: [Field],
+  imports: [FormField],
   templateUrl: './contato.html',
   styleUrl: './contato.css',
 })
-
-
 export class Contato {
   http = inject(HttpClient);
 

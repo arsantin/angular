@@ -1,34 +1,34 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, signal, inject } from '@angular/core';
-import { Field, form } from '@angular/forms/signals';
+import { form, FormField } from '@angular/forms/signals';
 
 interface ISignup {
-  name: string;
+  username: string;
   email: string;
   password: string;
 }
 
+const signupModel = signal<ISignup>({
+  username: '',
+  email: '',
+  password: '',
+});
+
 @Component({
   selector: 'app-signup',
-  imports: [Field],
+  imports: [FormField],
   templateUrl: './signup.html',
   styleUrl: './signup.css',
 })
 export class Signup {
-  signupModel = signal<ISignup>({
-    name: '',
-    email: '',
-    password: '',
-  });
-
   http = inject(HttpClient);
-  signupForm = form(this.signupModel);
+  signupForm = form(signupModel);
 
   postSignup() {
-    const { name, email, password } = this.signupModel();
-    const signupData: ISignup = { name, email, password };
+    const { username, email, password } = signupModel();
+    const signupData: ISignup = { username, email, password };
     console.log('signupData', signupData);
-    this.http.post('http://127.0.0.1:3000/signup', signupData).subscribe(
+    this.http.post('http://localhost:3000/user', signupData).subscribe(
       (response: any) => {
         const token = response.token;
         localStorage.setItem('token_angular', token);
