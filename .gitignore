@@ -1,5 +1,5 @@
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
-.env
+
 # Compiled output
 /dist
 /tmp
@@ -33,6 +33,7 @@ yarn-error.log
 .sass-cache/
 /connect.lock
 /coverage
+/src/environments
 /libpeerconnection.log
 testem.log
 /typings
