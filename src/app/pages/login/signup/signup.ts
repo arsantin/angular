@@ -28,15 +28,15 @@ export class Signup {
     const { username, email, password } = signupModel();
     const signupData: ISignup = { username, email, password };
     console.log('signupData', signupData);
-    this.http.post('http://localhost:3000/user', signupData).subscribe(
-      (response: any) => {
+    this.http.post(`${import.meta.env.BASE_URL}/user`, signupData).subscribe({
+      next: (response: any) => {
         const token = response.token;
         localStorage.setItem('token_angular', token);
         alert('Formulário enviado com sucesso!');
       },
-      (error) => {
+      error: (error) => {
         console.error('Erro ao enviar o formulário', error);
       },
-    );
+    });
   }
 }

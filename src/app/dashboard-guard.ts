@@ -24,10 +24,10 @@ export const dashboardGuard: CanActivateFn = (route, state) => {
   // Server-side validation: POST the token to an auth validation endpoint.
   // NOTE: Adjust the URL to match your backend. Many apps use `/api/auth/validate`
   // or `/auth/validate`. The endpoint should return { valid: boolean }.
-  return http.post<{ token: string }>('http://localhost:3000/auth/validate', { token }).pipe(
+  return http.post<{ token: string }>(`${import.meta.env.BASE_URL}/auth/validate`, { token }).pipe(
     map((res) => {
       console.log('validation response', res);
-      return res && res.token
+      return res?.token
         ? true
         : router.createUrlTree(['/login'], { queryParams: { returnUrl: state.url } });
     }),
