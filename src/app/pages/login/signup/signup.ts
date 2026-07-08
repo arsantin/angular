@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, signal, inject } from '@angular/core';
 import { form, FormField } from '@angular/forms/signals';
+import { environment } from '../../../../environments/environment.development';
 
 interface ISignup {
   username: string;
@@ -28,7 +29,7 @@ export class Signup {
     const { username, email, password } = signupModel();
     const signupData: ISignup = { username, email, password };
     console.log('signupData', signupData);
-    this.http.post(`${import.meta.env.BASE_URL}/user`, signupData).subscribe({
+    this.http.post(`${environment.baseUrl}/user`, signupData).subscribe({
       next: (response: any) => {
         const token = response.token;
         localStorage.setItem('token_angular', token);

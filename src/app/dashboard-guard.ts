@@ -2,6 +2,7 @@ import { CanActivateFn, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { map, catchError, of } from 'rxjs';
+import { environment } from '../environments/environment.development';
 
 /**
  * Protects the /dashboard route by checking for an auth token in localStorage.
@@ -24,7 +25,7 @@ export const dashboardGuard: CanActivateFn = (route, state) => {
   // Server-side validation: POST the token to an auth validation endpoint.
   // NOTE: Adjust the URL to match your backend. Many apps use `/api/auth/validate`
   // or `/auth/validate`. The endpoint should return { valid: boolean }.
-  return http.post<{ token: string }>(`${import.meta.env.BASE_URL}/auth/validate`, { token }).pipe(
+  return http.post<{ token: string }>(`${environment.baseUrl}/auth/validate`, { token }).pipe(
     map((res) => {
       console.log('validation response', res);
       return res?.token

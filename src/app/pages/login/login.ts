@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, signal } from '@angular/core';
 import { form, FormField } from '@angular/forms/signals';
+import { environment } from '../../../environments/environment.development';
 
 interface ILogin {
   email: string;
@@ -25,7 +26,7 @@ export class Login {
     const { email, password } = this.loginModel();
     const loginData: ILogin = { email, password };
     console.log('loginData', loginData);
-    this.http.post(`${import.meta.env.BASE_URL}/auth/validate`, loginData).subscribe({
+    this.http.post(`${environment.baseUrl}/auth/validate`, loginData).subscribe({
       next: (response: any) => {
         console.log('response', response);
         const token = response.token;

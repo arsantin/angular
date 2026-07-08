@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, signal } from '@angular/core';
 import { Field, form, FormField } from '@angular/forms/signals';
+import { environment } from '../../../environments/environment.development';
 
 interface iContato {
   name: string;
@@ -29,15 +30,15 @@ export class Contato {
     const { name, email, message } = this.contatoModel();
     const formData: iContato = { name, email, message };
     console.log(formData);
-    this.http.post('http://127.0.0.1:3000/signup', formData).subscribe(
-      (response: any) => {
+    this.http.post(`${environment.baseUrl}/signup`, formData).subscribe({
+      next: (response: any) => {
         const token = response.token;
         localStorage.setItem('token', token);
         console.log('Formulário enviado com sucesso!', response);
       },
-      (error) => {
+      error: (error) => {
         console.error('Erro ao enviar o formulário', error);
       },
-    );
+    });
   }
 }
