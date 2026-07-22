@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
+import { UserProfile } from '../../components/user-profile/user-profile';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [UserProfile],
   templateUrl: './home.html',
-  styleUrl: './home.css'
+  styleUrls: ['./home.css'],
 })
-export class Home {
-
-}
+export class Home {}

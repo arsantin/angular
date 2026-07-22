@@ -6,5 +6,10 @@
     <li><a routerLink="/login">Login</a></li>
     <li><a routerLink="/login/signup">Signup</a></li>
   </ul>
-  <a (click)="logout()">Logout</a>
+  @if (token()) {
+    <div class="flex items-center gap-4">
+      <span class="text-white">Logged in</span>
+      <a (click)="logout()">Logout</a>
+    </div>
+  }
 </div>
