@@ -1,9 +1,10 @@
-import { Component, signal, WritableSignal } from '@angular/core';
+import { Component, signal, WritableSignal, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-todo',
   imports: [],
   templateUrl: './todo.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './todo.css',
 })
 export class Todo {

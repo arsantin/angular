@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, signal, inject } from '@angular/core';
+import { Component, signal, inject, ChangeDetectionStrategy } from '@angular/core';
 import { form, FormField } from '@angular/forms/signals';
 import { environment } from '../../../../environments/environment.development';
 
@@ -19,6 +19,7 @@ const signupModel = signal<ISignup>({
   selector: 'app-signup',
   imports: [FormField],
   templateUrl: './signup.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './signup.css',
 })
 export class Signup {

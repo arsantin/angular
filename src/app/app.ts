@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { of, startWith } from 'rxjs';
 import { Header } from './widgets/header/header';
@@ -6,6 +6,7 @@ import { Header } from './widgets/header/header';
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, Header],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './app.html',
 })
 export class App implements OnInit {

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Field, form, FormField } from '@angular/forms/signals';
 import { environment } from '../../../environments/environment.development';
 
@@ -13,6 +13,7 @@ interface iContato {
   selector: 'app-contato',
   imports: [FormField],
   templateUrl: './contato.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './contato.css',
 })
 export class Contato {
