@@ -33,6 +33,7 @@ export class Login {
         const token = response?.data?.token;
         localStorage.setItem('token_angular', token);
         alert('Formulário enviado com sucesso!');
+        window.location.href = '/dashboard';
       },
       error: (error) => {
         console.error('Erro ao enviar o formulário', error);

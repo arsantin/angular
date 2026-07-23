@@ -6,6 +6,7 @@ import { Login } from './pages/login/login';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { dashboardGuard } from './dashboard-guard';
 import { Signup } from './pages/login/signup/signup';
+import { MeuPerfil } from './pages/dashboard/meu-perfil/meu-perfil';
 export const routes: Routes = [
   {
     path: '',
@@ -30,6 +31,11 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: Dashboard,
+    canActivate: [dashboardGuard],
+  },
+  {
+    path: 'dashboard/meu-perfil',
+    component: MeuPerfil,
     canActivate: [dashboardGuard],
   },
 ];

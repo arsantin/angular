@@ -16,7 +16,7 @@ export const dashboardGuard: CanActivateFn = (route, state) => {
   // Try common token keys used in apps. Adjust the key name if your app uses a
   // different storage key (for example 'authToken' or 'access_token').
   const token = localStorage.getItem('token_angular') || null;
-
+  console.log('dashboardGuard token', token);
   if (!token) {
     // Not authenticated -> redirect to login and preserve return URL
     return router.createUrlTree(['/login'], { queryParams: { returnUrl: state.url } });
@@ -25,10 +25,10 @@ export const dashboardGuard: CanActivateFn = (route, state) => {
   // Server-side validation: POST the token to an auth validation endpoint.
   // NOTE: Adjust the URL to match your backend. Many apps use `/api/auth/validate`
   // or `/auth/validate`. The endpoint should return { valid: boolean }.
-  return http.post<{ token: string }>(`${environment.baseUrl}/auth/validate`, { token }).pipe(
+  return http.post<{ valid: boolean }>(`${environment.baseUrl}/auth/validate`, { token }).pipe(
     map((res) => {
-      console.log('validation response', res);
-      return res?.token
+      console.log('validation responsessssss', res);
+      return res?.valid
         ? true
         : router.createUrlTree(['/login'], { queryParams: { returnUrl: state.url } });
     }),
