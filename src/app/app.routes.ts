@@ -7,6 +7,7 @@ import { Dashboard } from './pages/dashboard/dashboard';
 import { dashboardGuard } from './dashboard-guard';
 import { Signup } from './pages/login/signup/signup';
 import { MeuPerfil } from './pages/dashboard/meu-perfil/meu-perfil';
+import { Users } from './pages/dashboard/users/users';
 export const routes: Routes = [
   {
     path: '',
@@ -36,6 +37,11 @@ export const routes: Routes = [
   {
     path: 'dashboard/meu-perfil',
     component: MeuPerfil,
+    canActivate: [dashboardGuard],
+  },
+  {
+    path: 'dashboard/users',
+    component: Users,
     canActivate: [dashboardGuard],
   },
 ];
