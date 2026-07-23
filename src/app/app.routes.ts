@@ -6,8 +6,8 @@ import { Login } from './pages/login/login';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { dashboardGuard } from './dashboard-guard';
 import { Signup } from './pages/login/signup/signup';
-import { MeuPerfil } from './pages/dashboard/meu-perfil/meu-perfil';
 import { Users } from './pages/dashboard/users/users';
+import { Details } from './pages/dashboard/user/details/details';
 export const routes: Routes = [
   {
     path: '',
@@ -35,13 +35,13 @@ export const routes: Routes = [
     canActivate: [dashboardGuard],
   },
   {
-    path: 'dashboard/meu-perfil',
-    component: MeuPerfil,
+    path: 'dashboard/users',
+    component: Users,
     canActivate: [dashboardGuard],
   },
   {
-    path: 'dashboard/users',
-    component: Users,
+    path: 'dashboard/user/details/:id',
+    component: Details,
     canActivate: [dashboardGuard],
   },
 ];

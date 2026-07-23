@@ -1,2 +1,8 @@
-<p>users works!</p>
 <p>{{ users() | json }}</p>
+@for (user of users(); track user) {
+  <a href="/dashboard/user/details/{{ user.id }}">
+    <p>{{ user.id }}</p>
+    <p>{{ user.username }}</p>
+    <p>{{ user.email }}</p></a
+  >
+}
