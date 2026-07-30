@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
-import { Field, form, FormField } from '@angular/forms/signals';
+import { form, FormField } from '@angular/forms/signals';
 import { environment } from '../../../environments/environment.development';
 
-interface iContato {
+interface ContatoData {
   name: string;
   email: string;
   message: string;
@@ -19,7 +19,7 @@ interface iContato {
 export class Contato {
   http = inject(HttpClient);
 
-  contatoModel = signal<iContato>({
+  contatoModel = signal<ContatoData>({
     name: '',
     email: '',
     message: '',
@@ -29,7 +29,7 @@ export class Contato {
 
   sendForm() {
     const { name, email, message } = this.contatoModel();
-    const formData: iContato = { name, email, message };
+    const formData: ContatoData = { name, email, message };
     console.log(formData);
     this.http.post(`${environment.baseUrl}/signup`, formData).subscribe({
       next: (response: any) => {

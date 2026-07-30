@@ -10,6 +10,7 @@ import { RouterLink } from '@angular/router';
 })
 export class Header {
   token = signal<string | null>(localStorage.getItem('token_angular'));
+  
   logout() {
     localStorage.removeItem('token_angular');
     this.token.set(null);

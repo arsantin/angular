@@ -1,8 +1,11 @@
-<p>{{ users() | json }}</p>
-@for (user of users(); track user) {
-  <a href="/dashboard/user/details/{{ user.id }}">
-    <p>{{ user.id }}</p>
-    <p>{{ user.username }}</p>
-    <p>{{ user.email }}</p></a
-  >
-}
+<div class="flex bg-blue-400 gap-4">
+  @for (user of users(); track user) {
+    <div class="rounded-lg bg-red-100 w-[150px]">
+      <a href="/dashboard/user/details/{{ user.id }}">
+        <p>{{ user.id }}</p>
+        <p>{{ user.username }}</p>
+        <p>{{ user.email }}</p></a
+      >
+    </div>
+  }
+</div>

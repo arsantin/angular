@@ -1,3 +1,17 @@
 <p>home works!</p>
-<p>{{ meusDados() | json }}</p>
+<app-product
+  title="Meu produto"
+  description="Descrição do meu produto"
+  [price]="100"
+  [quantity]="10"
+></app-product>
+<app-product
+  title="Carro esportivo"
+  description="Descrição do carro esportivo"
+  [price]="50000"
+  [quantity]="2"
+>
+  <p>Total:</p>
+</app-product>
+
 <app-user-profile></app-user-profile>
