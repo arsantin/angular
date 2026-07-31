@@ -1,9 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, inject, signal } from '@angular/core';
+import { HttpClient, httpResource } from '@angular/common/http';
+import { Component, computed, effect, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../../../environments/environment';
-import { JsonPipe } from '@angular/common';
-// signal is not re-imported here (already imported above if needed)
 
 interface IUser {
   id: string;
@@ -13,7 +11,7 @@ interface IUser {
 
 @Component({
   selector: 'app-details',
-  imports: [JsonPipe],
+  imports: [],
   templateUrl: './details.html',
   styleUrls: ['./details.css'],
 })
@@ -21,23 +19,24 @@ export class Details {
   activatedRoute = inject(ActivatedRoute);
   http = inject(HttpClient);
 
-  // Use a signal so the template updates reactively when the value arrives
+  // Use httpResource to fetch user data reactively
+  userResource = httpResource<IUser>(() => ({
+    url: `${environment.baseUrl}/user/${this.activatedRoute.snapshot.params['id']}`,
+  }));
+
+  // Use a signal to manage user state
   user = signal<IUser | null>(null);
 
   constructor() {
     console.log('id:', this.activatedRoute.snapshot.params['id']);
 
-    this.http
-      .get(`${environment.baseUrl}/user/${this.activatedRoute.snapshot.params['id']}`)
-      .subscribe(
-        (user) => {
-          console.log('user', user);
-          this.user.set(user as IUser);
-        },
-        (err) => {
-          console.error('Failed to load user', err);
-        },
-      );
+    // Sync userResource value to user signal
+    effect(() => {
+      const value = this.userResource.value();
+      if (value) {
+        this.user.set(value);
+      }
+    });
   }
 
   updateUser(id: string) {
@@ -65,6 +64,24 @@ export class Details {
       },
       (err) => {
         console.error('Failed to update user', err);
+      },
+    );
+  }
+
+  deleteUser(id: string) {
+    console.log('deleteUser called with id:', id);
+    if (!id) {
+      console.error('No user ID provided');
+      return;
+    }
+    this.http.delete(`${environment.baseUrl}/user/${id}`).subscribe(
+      (response) => {
+        console.log('user deleted', response);
+        // Optionally, you can clear the user data after deletion
+        this.user.set(null);
+      },
+      (err) => {
+        console.error('Failed to delete user', err);
       },
     );
   }

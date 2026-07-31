@@ -1,33 +1,34 @@
-  <form
-    class="bg-gray-300"
-    (submit)="$event.preventDefault(); user()?.id && updateUser(user()!.id)"
+<form class="bg-gray-300" (submit)="$event.preventDefault(); user()?.id && updateUser(user()!.id)">
+  <div class="flex flex-row mb-2">
+    <label for="username" class="mr-2 w-[80px]">Nome:</label>
+    <input
+      type="text"
+      [value]="user()?.username"
+      name="username"
+      id="username"
+      class="bg-white"
+      (input)="user.update(u => u ? ({ ...u, username: $any($event.target).value }) : u)"
+    />
+  </div>
+  <div class="flex flex-row mb-2">
+    <label for="email" class="mr-2 w-[80px]">Email:</label>
+    <input
+      type="text"
+      [value]="user()?.email"
+      name="email"
+      id="email"
+      class="bg-white"
+      (input)="user.update(u => u ? ({ ...u, email: $any($event.target).value }) : u)"
+    />
+  </div>
+  <button
+    type="button"
+    class="rounded-lg bg-red-400 hover:bg-300 px-6 py-2 hover:cursor-pointer mr-2"
+    (click)="deleteUser(user()!.id)"
   >
-    <div class="flex flex-row mb-2">
-      <label for="username" class="mr-2 w-[80px]">Nome:</label>
-      <input
-        type="text"
-        [value]="user()?.username"
-        name="username"
-        id="username"
-        class="bg-white"
-        (input)="user.update(u => u ? ({ ...u, username: $any($event.target).value }) : u)"
-      />
-    </div>
-    <div class="flex flex-row mb-2">
-      <label for="email" class="mr-2 w-[80px]">Email:</label>
-      <input
-        type="text"
-        [value]="user()?.email"
-        name="email"
-        id="email"
-        class="bg-white"
-        (input)="user.update(u => u ? ({ ...u, email: $any($event.target).value }) : u)"
-      />
-    </div>
-    <button
-      type="submit"
-      class="rounded-lg bg-blue-400 hover:bg-300 px-6 py-2 hover:cursor-pointer"
-    >
-      Save
-    </button>
-  </form>
+    Delete
+  </button>
+  <button type="submit" class="rounded-lg bg-blue-400 hover:bg-300 px-6 py-2 hover:cursor-pointer">
+    Save
+  </button>
+</form>
