@@ -1,5 +1,5 @@
 import { HttpClient, httpResource } from '@angular/common/http';
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../../../environments/environment';
 
@@ -57,15 +57,15 @@ export class Details {
     };
     console.log('payload', payload);
     console.log('Updating user with payload:', payload);
-    this.http.put(`${environment.baseUrl}/user/${id}`, payload).subscribe(
-      (user) => {
+    this.http.put(`${environment.baseUrl}/user/${id}`, payload).subscribe({
+      next: (user) => {
         console.log('user updated', user);
         this.user.set(user as IUser);
       },
-      (err) => {
+      error: (err) => {
         console.error('Failed to update user', err);
       },
-    );
+    });
   }
 
   deleteUser(id: string) {
@@ -74,15 +74,16 @@ export class Details {
       console.error('No user ID provided');
       return;
     }
-    this.http.delete(`${environment.baseUrl}/user/${id}`).subscribe(
-      (response) => {
+    this.http.delete(`${environment.baseUrl}/user/${id}`).subscribe({
+      next: (response) => {
         console.log('user deleted', response);
         // Optionally, you can clear the user data after deletion
         this.user.set(null);
+        location.href = '/dashboard/users'; // Redirect to users list after deletion
       },
-      (err) => {
+      error: (err) => {
         console.error('Failed to delete user', err);
       },
-    );
+    });
   }
 }
