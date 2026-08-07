@@ -1,0 +1,6 @@
+<h3>Meu carrinho</h3>
+<ul>
+  @for (product of products(); track $index) {
+    <li>{{ product.title }} - {{ product.price }} - {{ product.quantity }}</li>
+  }
+</ul>
