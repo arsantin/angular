@@ -5,8 +5,6 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   imports: [],
   templateUrl: './dashboard.html',
   changeDetection: ChangeDetectionStrategy.Eager,
-  styleUrl: './dashboard.css'
+  styleUrl: './dashboard.css',
 })
-export class Dashboard {
-
-}
+export class Dashboard {}

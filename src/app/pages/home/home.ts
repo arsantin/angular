@@ -3,16 +3,20 @@ import { UserProfile } from '../../components/user-profile/user-profile';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../../components/product/product';
 import { Cart } from '../../components/cart/cart';
+import { ProductSearchStore } from '../../../store';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-home',
-  imports: [UserProfile, Product, Cart],
+  imports: [UserProfile, Product, Cart, JsonPipe],
+  providers: [ProductSearchStore],
   templateUrl: './home.html',
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./home.css'],
 })
 export class Home {
   http = inject(HttpClient);
+  store = inject(ProductSearchStore);
 
   meusDados: WritableSignal<any[]> = signal([]);
   cart = signal<any[]>([]);
