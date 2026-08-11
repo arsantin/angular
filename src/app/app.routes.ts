@@ -8,6 +8,7 @@ import { dashboardGuard } from './dashboard-guard';
 import { Signup } from './pages/login/signup/signup';
 import { Users } from './pages/dashboard/users/users';
 import { Details } from './pages/dashboard/user/details/details';
+import { ReviewOrder } from './pages/dashboard/review-order/review-order';
 export const routes: Routes = [
   {
     path: '',
@@ -43,5 +44,10 @@ export const routes: Routes = [
     path: 'dashboard/user/details/:id',
     component: Details,
     canActivate: [dashboardGuard],
+  },
+  {
+    path: 'dashboard/review-order',
+    component: ReviewOrder,
+  //  canActivate: [dashboardGuard],
   },
 ];
