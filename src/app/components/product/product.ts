@@ -1,4 +1,5 @@
-import { Component, computed, input, output, signal } from '@angular/core';
+import { Component, computed, inject, input, output, signal } from '@angular/core';
+import { ProductSearchStore } from '../../../store';
 
 interface CartItem {
   title: string;
@@ -15,22 +16,28 @@ interface CartItem {
   styleUrl: './product.css',
 })
 export class Product {
-  title = input<string>('');
-  description = input<string>('');
-  price = input<number>(10);
-  quantity = signal(0);
-  total = computed(() => this.price() * this.quantity());
-
   // Emit cart items when "Add to Cart" is clicked
+  store = inject(ProductSearchStore);
   addToCartOutput = output<CartItem>();
+  product = input<any>();
 
   addToCart() {
+    const cartItem = {
+      productId: this.product().id,
+      title: this.product().title,
+      description: this.product().description,
+      price: this.product().price,
+      quantity: this.product().quantity,
+    };
+
     this.addToCartOutput.emit({
-      title: this.title(),
-      description: this.description(),
-      price: this.price(),
-      quantity: this.quantity(),
-      total: this.total(),
+      title: cartItem.title,
+      description: cartItem.description,
+      price: cartItem.price,
+      quantity: cartItem.quantity,
+      total: cartItem.quantity * cartItem.price,
     });
+
+    this.store.addToCart(cartItem as any);
   }
 }

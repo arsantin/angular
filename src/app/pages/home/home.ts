@@ -1,10 +1,10 @@
 import { Component, ChangeDetectionStrategy, inject, signal, WritableSignal } from '@angular/core';
 import { UserProfile } from '../../components/user-profile/user-profile';
 import { HttpClient } from '@angular/common/http';
-import { Product } from '../../components/product/product';
 import { Cart } from '../../components/cart/cart';
 import { ProductSearchStore } from '../../../store';
 import { JsonPipe } from '@angular/common';
+import { Product } from '../../components/product/product';
 
 @Component({
   selector: 'app-home',

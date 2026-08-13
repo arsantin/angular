@@ -1,29 +1,32 @@
-import { Component, computed, inject, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductSearchStore } from '../../../store';
-import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-cart',
-  imports: [JsonPipe],
+  imports: [],
   providers: [ProductSearchStore],
   templateUrl: './cart.html',
   styleUrl: './cart.css',
 })
 export class Cart {
-  private readonly router = inject(Router);
+  router = inject(Router);
   store = inject(ProductSearchStore);
-  products = input<{ title: string; price: number; quantity: number }[]>([]);
-  totalPrice = computed(() =>
-    this.products().reduce((total, product) => total + product.price * product.quantity, 0),
-  );
+  cart = input<any[]>();
   orderDetails = output<{
     products: { title: string; price: number; quantity: number }[];
-    totalPrice: number;
   }>();
 
   finalizarCompra() {
-    this.orderDetails.emit({ products: this.products(), totalPrice: this.totalPrice() });
+    this.orderDetails.emit({
+      products: this.store
+        .cart()
+        .map((item) => ({ title: item.title, price: item.price, quantity: item.quantity })),
+    });
     this.router.navigate(['/dashboard/review-order']);
+  }
+
+  totalPrice() {
+    return this.store.cart().reduce((total, item) => total + item.price * item.quantity, 0);
   }
 }

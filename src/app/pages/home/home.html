@@ -1,20 +1,10 @@
 <h1>home works!</h1>
 <h2>{{ store.products() | json }}</h2>
 <div class="flex flex-row gap-4">
-  <app-product
-    title="Meu produto"
-    description="Descrição do meu produto"
-    [price]="100"
-    (addToCartOutput)="addProductToCart($event)"
-  ></app-product>
-  <app-product
-    title="Carro esportivo"
-    description="Descrição do carro esportivo"
-    [price]="50000"
-    (addToCartOutput)="addProductToCart($event)"
-  >
-    <p>Total:</p>
-  </app-product>
-  <app-cart [products]="cart()"></app-cart>
+  @for (product of store.products(); track product.id) {
+    <app-product [product]="product" (addToCartOutput)="addProductToCart($event)"></app-product>
+  }
+  <p>Total:</p>
+  <app-cart [cart]="store.cart()"></app-cart>
 </div>
 <app-user-profile></app-user-profile>

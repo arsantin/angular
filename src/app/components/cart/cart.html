@@ -1,10 +1,9 @@
-<div class="flex">{{ store.cart() | json }}</div>
 <div
   class="flex flex-col items-center justify-center bg-red-300 p-4 rounded-lg shadow-md text-antiquewhite"
 >
   <h3>Meu carrinho</h3>
   <ul>
-    @for (product of products(); track $index) {
+    @for (product of cart(); track $index) {
       <li>
         {{ product.title }} - {{ product.price }} - {{ product.quantity }} <button>Remover</button>
       </li>
