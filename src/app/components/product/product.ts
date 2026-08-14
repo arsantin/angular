@@ -23,7 +23,7 @@ export class Product {
 
   addToCart() {
     const cartItem = {
-      productId: this.product().id,
+      id: this.product().id,
       title: this.product().title,
       description: this.product().description,
       price: this.product().price,

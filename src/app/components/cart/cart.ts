@@ -1,11 +1,11 @@
 import { Component, inject, input, output } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductSearchStore } from '../../../store';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-cart',
-  imports: [],
-  providers: [ProductSearchStore],
+  imports: [JsonPipe],
   templateUrl: './cart.html',
   styleUrl: './cart.css',
 })
@@ -28,5 +28,9 @@ export class Cart {
 
   totalPrice() {
     return this.store.cart().reduce((total, item) => total + item.price * item.quantity, 0);
+  }
+
+  removeFromCart(id: number) {
+    this.store.removeFromCart(id);
   }
 }

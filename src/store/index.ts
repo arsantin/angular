@@ -70,10 +70,12 @@ export const ProductSearchStore = signalStore(
         cart: [...state.cart, cartItem],
       }));
     },
-    removeFromCart(productId: number) {
+    removeFromCart(id: number) {
+      console.log('Removing item with id:', id);
       patchState(store, (state) => ({
-        cart: state.cart.filter((item) => item.productId !== productId),
+        cart: state.cart.filter((item) => item.id !== id),
       }));
+      console.log('Current cart after removal:', store.cart());
     },
   })),
 );
