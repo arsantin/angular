@@ -19,7 +19,7 @@ interface ICartItem {
   quantity: number;
 }
 
-interface IOrder {
+export interface IOrder {
   id: number;
   productId: number;
   title: string;
@@ -31,7 +31,7 @@ interface IOrder {
 type ProductSearchState = {
   products: Array<IProducts>;
   cart: Array<ICartItem>;
-  orders: Array<IOrder>;
+  orders: Array<any>;
   isLoading: boolean;
   filter: { query: string; order: 'asc' | 'desc' };
 };
@@ -43,6 +43,20 @@ const initialState: ProductSearchState = {
       title: 'Product 1',
       description: 'Description of Product 1',
       price: 100,
+      quantity: 1,
+    },
+    {
+      id: 2,
+      title: 'Product 2',
+      description: 'Description of Product 2',
+      price: 200,
+      quantity: 1,
+    },
+    {
+      id: 3,
+      title: 'Product 3',
+      description: 'Description of Product 3',
+      price: 300,
       quantity: 1,
     },
   ],
@@ -57,7 +71,7 @@ export const ProductSearchStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
   withComputed((state) => ({
-    productCount: computed(() => state.products.length),
+    productCount: computed(() => state?.products?.length),
   })),
   withMethods((store) => ({
     addProduct(product: IProducts) {
@@ -76,6 +90,16 @@ export const ProductSearchStore = signalStore(
         cart: state.cart.filter((item) => item.id !== id),
       }));
       console.log('Current cart after removal:', store.cart());
+    },
+    addOrder(order: any) {
+      console.log('Adding order:', order);
+      patchState(store, (state) => ({
+        orders: [...state.orders, order],
+      }));
+      console.log('Current orders after addition:', store.orders());
+    },
+    getOrders() {
+      return store.orders();
     },
   })),
 );

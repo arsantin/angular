@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, output, signal } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { ProductSearchStore } from '../../../store';
 
 interface CartItem {

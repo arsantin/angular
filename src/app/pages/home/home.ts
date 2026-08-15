@@ -1,5 +1,4 @@
 import { Component, ChangeDetectionStrategy, inject, signal, WritableSignal } from '@angular/core';
-import { UserProfile } from '../../components/user-profile/user-profile';
 import { HttpClient } from '@angular/common/http';
 import { Cart } from '../../components/cart/cart';
 import { ProductSearchStore } from '../../../store';
@@ -8,10 +7,10 @@ import { Product } from '../../components/product/product';
 
 @Component({
   selector: 'app-home',
-  imports: [UserProfile, Product, Cart, JsonPipe],
-  providers: [ProductSearchStore],
+  imports: [Product, Cart, JsonPipe],
+  providers: [],
   templateUrl: './home.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./home.css'],
 })
 export class Home {

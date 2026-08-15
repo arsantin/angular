@@ -7,4 +7,6 @@
   <p>Total:</p>
   <app-cart [cart]="store.cart()"></app-cart>
 </div>
-<app-user-profile></app-user-profile>
+<p>Qt total de produtos: {{ store.productCount() }}</p>
+<h2>Meu pedido:</h2>
+<p>{{ store.orders() | json }}</p>
