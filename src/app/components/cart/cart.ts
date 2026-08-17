@@ -1,18 +1,17 @@
 import { Component, inject, input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductSearchStore } from '../../../store';
-import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-cart',
-  imports: [JsonPipe],
+  imports: [],
   templateUrl: './cart.html',
   styleUrl: './cart.css',
 })
 export class Cart {
   router = inject(Router);
   store = inject(ProductSearchStore);
-  cart = input<any[]>();
+  readonly cart = input<any[]>();
 
   addOrder(order: any) {
     this.store.addOrder(order);

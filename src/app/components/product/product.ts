@@ -40,4 +40,8 @@ export class Product {
 
     this.store.addToCart(cartItem as any);
   }
+
+  alreadyOnCart(productId: number): boolean {
+    return this.store.cart().some((item) => item.id === productId);
+  }
 }

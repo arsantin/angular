@@ -1,5 +1,4 @@
-<h1>home works!</h1>
-<h2>{{ store.products() | json }}</h2>
+<h1 class="w-full mx-auto">Produtos</h1>
 <div class="flex flex-row gap-4">
   @for (product of store.products(); track product.id) {
     <app-product [product]="product" (addToCartOutput)="addProductToCart($event)"></app-product>
