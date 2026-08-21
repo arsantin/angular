@@ -1,2 +1,9 @@
-<p>products works!</p>
-<a href="/dashboard/products/new">Novo Produto</a>
+<div class="flex bg-blue-400 gap-4">
+  <div class="flex flex-row gap-4">
+    @for (product of store.products(); track product.id) {
+      <app-product [product]="product"></app-product>
+    }
+    <p>Total:</p>
+  </div>
+</div>
+<p><app-cart [cart]="store.cart() ?? []"></app-cart></p>

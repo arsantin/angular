@@ -1,11 +1,11 @@
 <h1 class="w-full mx-auto">Produtos</h1>
-<div class="flex flex-row gap-4">
+<!-- <div class="flex flex-row gap-4">
   @for (product of store.products(); track product.id) {
     <app-product [product]="product" (addToCartOutput)="addProductToCart($event)"></app-product>
   }
   <p>Total:</p>
   <app-cart [cart]="store.cart()"></app-cart>
-</div>
+</div> -->
 <p>Qt total de produtos: {{ store.productCount() }}</p>
 <h2>Meu pedido:</h2>
 <p>{{ store.orders() | json }}</p>

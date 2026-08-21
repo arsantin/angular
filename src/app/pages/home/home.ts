@@ -1,13 +1,11 @@
 import { Component, ChangeDetectionStrategy, inject, signal, WritableSignal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Cart } from '../../components/cart/cart';
 import { ProductSearchStore } from '../../../store';
 import { JsonPipe } from '@angular/common';
-import { Product } from '../../components/product/product';
 
 @Component({
   selector: 'app-home',
-  imports: [Product, Cart, JsonPipe],
+  imports: [JsonPipe],
   providers: [],
   templateUrl: './home.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,2 +1,15 @@
-<p>review-order works!</p>
-<p>{{ store.orders() | json }}</p>
+<h1>Resumo do pedido</h1>
+<div class="flex">
+  @if (store.orders() && store.orders()!.length > 0) {
+    @for (order of store.orders(); track order.id) {
+      <div class="flex flex-col gap-2 bg-color-200 p-4 rounded-lg shadow-md text-antiquewhite m-2">
+        <p>Produto: {{ order?.title }}</p>
+        <p>Quantidade: {{ order?.quantity }}</p>
+        <p>Preço: {{ order?.price }}</p>
+      </div>
+    }
+  } @else {
+    <p>Nenhum pedido encontrado</p>
+  }
+</div>
+<button class="bg-blue-500 text-white p-2 rounded-lg shadow-md">Finalizar Pedido</button>

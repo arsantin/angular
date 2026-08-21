@@ -9,6 +9,7 @@ import { Signup } from './pages/login/signup/signup';
 import { Users } from './pages/dashboard/users/users';
 import { Details } from './pages/dashboard/user/details/details';
 import { ReviewOrder } from './pages/dashboard/review-order/review-order';
+import { Products } from './pages/dashboard/products/products';
 export const routes: Routes = [
   {
     path: '',
@@ -41,6 +42,11 @@ export const routes: Routes = [
     canActivate: [dashboardGuard],
   },
   {
+    path: 'dashboard/products',
+    component: Products,
+    canActivate: [dashboardGuard],
+  },
+  {
     path: 'dashboard/user/details/:id',
     component: Details,
     canActivate: [dashboardGuard],
@@ -48,6 +54,6 @@ export const routes: Routes = [
   {
     path: 'dashboard/review-order',
     component: ReviewOrder,
-  //  canActivate: [dashboardGuard],
+    //  canActivate: [dashboardGuard],
   },
 ];

@@ -1,7 +1,8 @@
 import { Component, inject, input, output } from '@angular/core';
-import { ProductSearchStore } from '../../../store';
+import { IProduct, ProductSearchStore } from '../../../store';
 
 interface CartItem {
+  id: number;
   title: string;
   description: string;
   price: number;
@@ -19,29 +20,30 @@ export class Product {
   // Emit cart items when "Add to Cart" is clicked
   store = inject(ProductSearchStore);
   addToCartOutput = output<CartItem>();
-  product = input<any>();
+  product = input<IProduct>();
 
   addToCart() {
+    const product = this.product();
+    if (!product) return;
     const cartItem = {
-      id: this.product().id,
-      title: this.product().title,
-      description: this.product().description,
-      price: this.product().price,
-      quantity: this.product().quantity,
+      id: product.id,
+      productId: product.id,
+      title: product.title,
+      description: product.description,
+      quantity: product.quantity,
+      price: product.price,
     };
 
     this.addToCartOutput.emit({
-      title: cartItem.title,
-      description: cartItem.description,
-      price: cartItem.price,
-      quantity: cartItem.quantity,
+      ...cartItem,
       total: cartItem.quantity * cartItem.price,
     });
 
-    this.store.addToCart(cartItem as any);
+    this.store.addToCart(cartItem);
   }
 
   alreadyOnCart(productId: number): boolean {
-    return this.store.cart().some((item) => item.id === productId);
+    const cart = this.store.cart();
+    return cart ? cart.some((item) => item.id === productId) : false;
   }
 }
