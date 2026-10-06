@@ -7,7 +7,11 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "prepare": "npm run setup:git-hooks",
+    "setup:git-hooks": "git config core.hooksPath .githooks",
+    "verify:aria-accessibility-reviewer": "node scripts/verify-aria-accessibility-reviewer.mjs",
+    "test:aria-accessibility-reviewer": "node --test scripts/verify-aria-accessibility-reviewer.test.mjs"
   },
   "prettier": {
     "printWidth": 100,
