@@ -3,7 +3,7 @@
     <img src="http://www.lorempixel.com.br/120/80" alt="" />
     <h2>{{ p.title }}</h2>
     <p>{{ p.description }}</p>
-    <label [for]="'product-quantity-' + p.id">Quantidade de {{ p.title }}</label>
+    <label [attr.for]="'product-quantity-' + p.id">Quantidade para adicionar de {{ p.title }}</label>
     <input
       class="bg-white border border-gray-300 rounded px-2 py-1 mb-2"
       type="number"

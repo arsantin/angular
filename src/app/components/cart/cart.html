@@ -10,7 +10,7 @@
             <div>
               <h2>SKU{{ product.id }} - {{ product.title }}</h2>
               <p>Preço: {{ product.price }}</p>
-              <label [for]="'cart-quantity-' + product.id">Quantidade de {{ product.title }}</label>
+              <label [attr.for]="'cart-quantity-' + product.id">Quantidade no carrinho de {{ product.title }}</label>
               <input
                 class="bg-white border border-gray-300 rounded px-2 py-1 mb-2"
                 type="number"
