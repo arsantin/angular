@@ -1,27 +1,28 @@
 @if (product(); as p) {
   <div class="flex mb-10 max-w-[280px] bg-gray-200 p-4 rounded-lg shadow-md flex-col">
-    <img src="http://www.lorempixel.com.br/120/80" alt="Nature" />
-    <h1>{{ p.title }}</h1>
+    <img src="http://www.lorempixel.com.br/120/80" alt="" />
+    <h2>{{ p.title }}</h2>
     <p>{{ p.description }}</p>
-    <label for="quantity">Digite um número</label>
+    <label [for]="'product-quantity-' + p.id">Quantidade de {{ p.title }}</label>
     <input
       class="bg-white border border-gray-300 rounded px-2 py-1 mb-2"
       type="number"
-      id="quantity"
+      [id]="'product-quantity-' + p.id"
       placeholder="Digite um número"
       max="100"
       min="0"
       [value]="p.quantity"
       (input)="p.quantity = $any($event.target).value"
     />
-    <label for="Valor">Valor: {{ p.price }}</label>
-    <h3>Total: {{ p.quantity * p.price }}</h3>
+    <p>Valor: {{ p.price }}</p>
+    <p>Total: {{ p.quantity * p.price }}</p>
     <button
+      type="button"
       class="bg-blue-500 hover:cursor-pointer px-4 py-2 rounded disabled:opacity-50 disabled:cursor-not-allowed"
       (click)="addToCart()"
       [disabled]="p.quantity <= 0 || alreadyOnCart(p.id)"
     >
-      -ADD TO CART-
+      Add {{ p.title }} to cart
     </button>
   </div>
 }

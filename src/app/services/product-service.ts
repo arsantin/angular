@@ -7,6 +7,6 @@ import { inject, Injectable } from '@angular/core';
 export class ProductService {
   http = inject(HttpClient);
   getProducts() {
-    return this.http.get('http://localhost:3000/products');
+    return this.http.get('http://187.77.47.69:3000/products');
   }
 }
