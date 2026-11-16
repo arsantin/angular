@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 
 interface User {
@@ -12,6 +12,7 @@ interface User {
   selector: 'app-users',
   imports: [],
   templateUrl: './users.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./users.css'],
 })
 export class Users {
