@@ -54,6 +54,26 @@ ng e2e
 
 Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
+## Commit-time ARIA accessibility review
+
+`npm install` configures this repository's local Git hooks. Before every commit, the
+pre-commit hook validates `.github/agents/aria-accessibility-reviewer.agent.md` and
+uses the installed, authenticated GitHub Copilot CLI to review staged `.html` and
+`.ts` files. It blocks the commit when the agent definition is invalid, Copilot cannot
+complete the review, the response is malformed, or any High, Medium, or Low finding is
+reported.
+
+Run the check manually with:
+
+```bash
+npm run verify:aria-accessibility-reviewer
+```
+
+The hook requires `node`, `npm`, and an authenticated `copilot` CLI in `PATH`. If hooks
+were not configured during installation, run `npm run setup:git-hooks`. Git's
+`git commit --no-verify` bypasses the local hook and should be reserved for exceptional
+cases.
+
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

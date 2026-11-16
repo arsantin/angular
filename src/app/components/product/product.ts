@@ -1,4 +1,4 @@
-import { Component, inject, input, output } from '@angular/core';
+import { Component, inject, input, output, ChangeDetectionStrategy } from '@angular/core';
 import { IProduct, ProductSearchStore } from '../../../store';
 
 interface CartItem {
@@ -14,6 +14,7 @@ interface CartItem {
   selector: 'app-product',
   imports: [],
   templateUrl: './product.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './product.css',
 })
 export class Product {

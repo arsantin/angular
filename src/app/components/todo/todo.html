@@ -1,8 +1,9 @@
 <h1>TODO</h1>
 <div class="flex">
-<input type="text" (input)="myInput.set($any($event.target).value)" placeholder="Type something..." class="p-2 border-1 border-black rounded-sm"/>
-<button (click)="addTodo()">add</button>
-<button (click)="removeTask(meuArray().length - 1)">remove</button>
+  <label for="todo-input">New todo</label>
+  <input id="todo-input" type="text" (input)="myInput.set($any($event.target).value)" placeholder="Type something..." class="p-2 border-1 border-black rounded-sm"/>
+  <button type="button" (click)="addTodo()">Add todo</button>
+  <button type="button" (click)="removeTask(meuArray().length - 1)">Remove last todo</button>
 </div>
 
 <ul>

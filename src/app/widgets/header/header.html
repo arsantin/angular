@@ -1,15 +1,23 @@
 <div class="w-full h-16 bg-slate-800 font-bold [&_a]:text-white flex [&_a]:align-center [&_a]:p-4">
-  <ul class="flex w-full justify-between items-center">
-    <li><a routerLink="/">Home</a></li>
-    <li><a routerLink="/dashboard">Dashboard</a></li>
-    <li><a routerLink="/contato">Contato</a></li>
-    <li><a routerLink="/login">Login</a></li>
-    <li><a routerLink="/login/signup">Signup</a></li>
-  </ul>
+  <nav aria-label="Main navigation" class="flex-1">
+    <ul class="flex w-full justify-between items-center">
+      <li><a routerLink="/">Home</a></li>
+      <li><a routerLink="/dashboard">Dashboard</a></li>
+      <li><a routerLink="/contato">Contato</a></li>
+      <li><a routerLink="/login">Login</a></li>
+      <li><a routerLink="/login/signup">Signup</a></li>
+    </ul>
+  </nav>
   @if (token()) {
     <div class="flex items-center gap-4">
       <span class="text-white">Logged in</span>
-      <a (click)="logout()">Logout</a>
+      <button
+        type="button"
+        class="text-white p-4 bg-transparent border-0 cursor-pointer"
+        (click)="logout()"
+      >
+        Logout
+      </button>
     </div>
   }
 </div>

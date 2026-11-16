@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductSearchStore } from '../../../store';
 
@@ -6,6 +6,7 @@ import { ProductSearchStore } from '../../../store';
   selector: 'app-cart',
   imports: [],
   templateUrl: './cart.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './cart.css',
 })
 export class Cart {
